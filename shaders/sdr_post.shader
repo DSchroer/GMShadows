@@ -27,7 +27,7 @@ varying vec4 v_vColour;
 const int quality = 2;
 const float base = 2.0;
 const float top = 15.0;
-const float size = 128.0;
+const float size = 512.0;
 
 void main()
 {

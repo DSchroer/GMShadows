@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -31,6 +31,37 @@
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with(obj_light)
+{
+    lastCol = self.collision;
+    self.collision = collision_circle(self.x + (self.light_size / 2), self.y + (self.light_size / 2), (self.light_size / 2),obj_dynamic_shadow_caster, true, true);
+    if(lastCol &amp;&amp; !collision)
+    {
+        self.rendered = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -48,25 +79,48 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>surface_set_target(lightSurface);
+            <string>if(!surface_exists(lightSurface))
+{
+    lightSurface = surface_create(window_get_width(), window_get_height());
+}
+
+surface_set_target(lightSurface);
 draw_clear_alpha(c_black,1.0);
 with(obj_light)
 {
-    //draw_light_new(self)
-    caster();
-    distance();
-    reduction();
-    shadow();
-    postprocess();
+    if(!surface_exists(self.redraw))
+    {
+        self.redraw = surface_create(l_width, l_height);
+        self.rendered = false;
+    }
     
-    draw_surface_ext(self.redraw,self.x,self.y,self.scale,self.scale,0,c_white,1.0);
+    if(!self.rendered || collision)
+    {
+        caster();
+        distance();
+        reductions();
+        shadow();
+        postprocess();
+        self.rendered = true;
+    }
     
+    draw_surface_ext(self.redraw,self.x,self.y,self.scale,self.scale,0,c_white,1.0);    
 }
 surface_reset_target();
+
 
 shader_set(sdr_blend_shadow);
 draw_surface(lightSurface,0,0);
 shader_reset();
+
+if(debug_mode)
+{
+    with(obj_light)
+    {
+        draw_circle(self.x + (self.light_size / 2), self.y + (self.light_size / 2), (self.light_size / 2), true);
+    }
+}
+
 
 </string>
           </argument>

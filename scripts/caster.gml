@@ -1,3 +1,8 @@
+if(!surface_exists(self.back))
+{
+self.back = surface_create(l_width, l_height);
+}
+
 surface_set_target(self.back);
 draw_clear_alpha(c_white,0);
 with(obj_shadow_caster)

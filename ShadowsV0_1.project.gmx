@@ -21,7 +21,7 @@
       <script>scripts\redraw_light.gml</script>
       <script>scripts\caster.gml</script>
       <script>scripts\distance.gml</script>
-      <script>scripts\reduction.gml</script>
+      <script>scripts\reductions.gml</script>
       <script>scripts\shadow.gml</script>
     </scripts>
   </scripts>
@@ -46,6 +46,7 @@
       <object>objects\obj_shadow_caster</object>
       <object>objects\obj_shadow_map</object>
       <object>objects\obj_light</object>
+      <object>objects\obj_dynamic_shadow_caster</object>
     </objects>
     <object>objects\obj_fps</object>
     <object>objects\srd_obj</object>

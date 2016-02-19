@@ -1,3 +1,8 @@
+if(!surface_exists(self.posts))
+{
+self.posts = surface_create(l_width, l_height);
+}
+
 stages = shader_get_sampler_index(sdr_shadow,"shadowMapSamplers");
 shader_set(sdr_shadow);
 surface_set_target(self.posts);
