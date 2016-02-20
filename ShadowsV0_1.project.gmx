@@ -58,6 +58,7 @@
       <object>objects\obj_shadow_map</object>
       <object>objects\obj_light</object>
       <object>objects\obj_dynamic_shadow_caster</object>
+      <object>objects\obj_light_var</object>
     </objects>
     <object>objects\obj_fps</object>
     <object>objects\srd_obj</object>

@@ -4,6 +4,21 @@ light_size = argument0;
 map_size = argument1;
 layer = argument2;
 
+if (!instance_exists(obj_light_var))
+{
+    instance_create(0,0,obj_light_var);
+    obj_light_var.map_layer = ds_map_create();
+}
+
+if(!ds_map_exists(obj_light_var.map_layer,layer))
+{
+    ds_map_add_list(obj_light_var.map_layer, layer, ds_list_create());
+}
+
+var l;
+l = ds_map_find_value(obj_light_var.map_layer, layer);
+ds_list_add(l, id);
+
 sprite_index = noone;
 
 self.collision = false;

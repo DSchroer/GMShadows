@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>map_create(0);
+map_set_color_alpha(c_black, 0.9);
 </string>
           </argument>
         </arguments>

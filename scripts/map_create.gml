@@ -1,5 +1,17 @@
 ////map_create(layer)
 layer = argument0;
+
+if (!instance_exists(obj_light_var))
+{
+    instance_create(0,0,obj_light_var);
+    obj_light_var.map_layer = ds_map_create();
+}
+
+if(!ds_map_exists(obj_light_var.map_layer,layer))
+{
+    ds_map_add_list(obj_light_var.map_layer, layer, ds_list_create());
+}
+
 lightSurface = surface_create(window_get_width(), window_get_height());
 color = c_black;
 alpha = 1.0;
