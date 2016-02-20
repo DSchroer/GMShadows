@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 mov = true
+obscured = false;
 </string>
           </argument>
         </arguments>

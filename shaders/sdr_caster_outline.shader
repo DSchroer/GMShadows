@@ -24,11 +24,25 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform vec4 colorIn;
+const vec2 light = vec2(0.0, 0.0);
+const float size = (1.0 / 32.0) * 2.0;
 
 void main()
 {
-    vec4 colvec = vec4(1,1,1,1.0 - (v_vColour * texture2D( gm_BaseTexture, v_vTexcoord )).r);
-    gl_FragColor = colorIn * colvec;
+    gl_FragColor = vec4(0,0,0,0);
+    
+    vec2 ldir = normalize(light) * size;
+    vec4 ncol = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
+    if(ncol.a > 0.3)
+    {
+        vec2 npos = v_vTexcoord + ldir;
+        vec4 ccol = v_vColour * texture2D( gm_BaseTexture, npos);
+        
+        if(npos.x < 0.0|| npos.y < 0.0 || npos.x > 1.0|| npos.y > 1.0 || ccol.a < 0.3)
+        {
+            gl_FragColor = vec4(0,0,0,1);
+            return;
+        }
+    }
 }
 

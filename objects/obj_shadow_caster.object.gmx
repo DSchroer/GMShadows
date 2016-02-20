@@ -28,6 +28,7 @@
             <string>sprite = sprite_index;
 //sprite_index = noone;
 static = true;
+obscured = true;
 </string>
           </argument>
         </arguments>

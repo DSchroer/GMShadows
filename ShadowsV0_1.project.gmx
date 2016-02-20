@@ -23,6 +23,16 @@
       <script>scripts\distance.gml</script>
       <script>scripts\reductions.gml</script>
       <script>scripts\shadow.gml</script>
+      <scripts name="Light">
+        <script>scripts\light_use_gradient.gml</script>
+        <script>scripts\light_create.gml</script>
+      </scripts>
+      <scripts name="Map">
+        <script>scripts\map_create.gml</script>
+        <script>scripts\map_set_color_alpha.gml</script>
+        <script>scripts\map_draw.gml</script>
+        <script>scripts\map_calculate_culling.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <shaders name="shaders">
@@ -33,6 +43,7 @@
       <shader type="GLSLES">shaders\sdr_reduce.shader</shader>
       <shader type="GLSLES">shaders\sdr_reduce_linear.shader</shader>
       <shader type="GLSLES">shaders\sdr_post.shader</shader>
+      <shader type="GLSLES">shaders\sdr_caster_outline.shader</shader>
     </shaders>
     <shader type="GLSLES">shaders\sdr_test.shader</shader>
   </shaders>

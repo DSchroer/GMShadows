@@ -24,21 +24,25 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-const int quality = 2;
+uniform float gradient;
+uniform float mapSize;
+
+const int quality = 4;
 const float base = 2.0;
 const float top = 15.0;
-const float size = 512.0;
+const float size = 1024.0;
+
 
 void main()
 {
     float d = distance(v_vTexcoord, vec2(0.5,0.5)) * 2.0;
-    float dist = (1.0 / size) * d;
+    float dist = mapSize * d;
     
     vec4 total = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord);
     for(int i = 1; i < quality + 1; i++)
     {
         float pos = dist * (float(quality) / float(i)); 
-        pos = max(pos, base * (1.0 / size));
+        pos = max(pos, base * mapSize);
         
         total +=  v_vColour * texture2D( gm_BaseTexture, v_vTexcoord + vec2(pos,0.0) );
         total +=  v_vColour * texture2D( gm_BaseTexture, v_vTexcoord + vec2(-pos,0.0) );
@@ -52,7 +56,14 @@ void main()
     }
     
     vec4 avg = (total) / (8.0 * float(quality));
-    avg = avg * vec4(1,1,1, 1.0-d);
+    
+    if(gradient > 0.5)
+    {
+        avg = avg * vec4(1,1,1, 1.0-d);
+    }else
+    {
+    
+    }
     gl_FragColor = avg;
 }
 
