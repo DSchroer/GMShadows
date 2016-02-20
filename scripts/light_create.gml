@@ -4,20 +4,24 @@ light_size = argument0;
 map_size = argument1;
 layer = argument2;
 
+var inst;
 if (!instance_exists(obj_light_var))
 {
-    instance_create(0,0,obj_light_var);
+    inst = instance_create(0,0,obj_light_var);
     obj_light_var.map_layer = ds_map_create();
+}else{
+    inst = instance_find(obj_light_var,0);
 }
 
-if(!ds_map_exists(obj_light_var.map_layer,layer))
+if(!ds_map_exists(inst.map_layer,string(layer)))
 {
-    ds_map_add_list(obj_light_var.map_layer, layer, ds_list_create());
+    nl = ds_list_create();
+    ds_map_add(inst.map_layer, string(layer), nl);
 }
 
 var l;
-l = ds_map_find_value(obj_light_var.map_layer, layer);
-ds_list_add(l, id);
+l = ds_map_find_value(inst.map_layer, string(layer));
+ds_list_add(l, instance_id);
 
 sprite_index = noone;
 

@@ -7,9 +7,9 @@ if (!instance_exists(obj_light_var))
     obj_light_var.map_layer = ds_map_create();
 }
 
-if(!ds_map_exists(obj_light_var.map_layer,layer))
+if(!ds_map_exists(obj_light_var.map_layer,string(layer)))
 {
-    ds_map_add_list(obj_light_var.map_layer, layer, ds_list_create());
+    ds_map_add(obj_light_var.map_layer, string(layer), ds_list_create());
 }
 
 lightSurface = surface_create(window_get_width(), window_get_height());
