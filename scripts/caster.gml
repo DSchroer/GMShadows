@@ -5,26 +5,36 @@ self.back = surface_create(l_width, l_height);
 
 surface_set_target(self.back);
 draw_clear_alpha(c_white,0);
-with(obj_shadow_caster)
+
+var l;
+l = ds_map_find_value(instance_find(obj_light_var,0).cast_layer,string(layer));
+
+for(i = 0; i < ds_list_size(l); i++)
 {
-    xpos = (x - other.x) * other.iscale;
-    ypos = (y - other.y) * other.iscale;
+    var obj;
+    obj = ds_list_find_value(l, i);
     
-    if(!obscured)
+    with(obj)
     {
-        xvec = (other.map_size/2.0) - xpos;
-        yvec = (other.map_size/2.0) - ypos;
+        xpos = (x - other.x) * other.iscale;
+        ypos = (y - other.y) * other.iscale;
         
-        mag = sqrt((xvec * xvec) + (yvec * yvec));
-        sc = 6.0;
-        xunit = ((xvec / mag) * other.iscale) * sc;
-        yunit = ((yvec / mag) * other.iscale) * sc;
-        draw_sprite_ext(sprite,0,xpos - xunit,ypos - yunit,other.iscale, other.iscale, 0, 0, 1.0);
+        if(!obscured)
+        {
+            xvec = (other.map_size/2.0) - xpos;
+            yvec = (other.map_size/2.0) - ypos;
+            
+            mag = sqrt((xvec * xvec) + (yvec * yvec));
+            sc = 6.0;
+            xunit = ((xvec / mag) * other.iscale) * sc;
+            yunit = ((yvec / mag) * other.iscale) * sc;
+            draw_sprite_ext(sprite,0,xpos - xunit,ypos - yunit,other.iscale, other.iscale, 0, 0, 1.0);
+            
+            draw_set_blend_mode(bm_subtract);
+        }
         
-        draw_set_blend_mode(bm_subtract);
+        draw_sprite_ext(sprite,0,xpos,ypos,other.iscale, other.iscale, 0, 0, 1.0);
+        draw_set_blend_mode(bm_normal);
     }
-    
-    draw_sprite_ext(sprite,0,xpos,ypos,other.iscale, other.iscale, 0, 0, 1.0);
-    draw_set_blend_mode(bm_normal);
 }
 surface_reset_target();

@@ -9,6 +9,8 @@ if (!instance_exists(obj_light_var))
 {
     inst = instance_create(0,0,obj_light_var);
     obj_light_var.map_layer = ds_map_create();
+    obj_light_var.cast_layer = ds_map_create();
+    obj_light_var.cul_layer = ds_map_create();
 }else{
     inst = instance_find(obj_light_var,0);
 }
@@ -21,7 +23,7 @@ if(!ds_map_exists(inst.map_layer,string(layer)))
 
 var l;
 l = ds_map_find_value(inst.map_layer, string(layer));
-ds_list_add(l, instance_id);
+ds_list_add(l, self.id);
 
 sprite_index = noone;
 

@@ -33,6 +33,10 @@
         <script>scripts\map_draw.gml</script>
         <script>scripts\map_calculate_culling.gml</script>
       </scripts>
+      <scripts name="Cast">
+        <script>scripts\cast_create.gml</script>
+        <script>scripts\cast_set_dynamic.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <shaders name="shaders">
@@ -62,6 +66,7 @@
     </objects>
     <object>objects\obj_fps</object>
     <object>objects\srd_obj</object>
+    <object>objects\obj_ds</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\test</room>

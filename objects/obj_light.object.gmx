@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_create(1024,1024,0);
+            <string>light_create(512,256,0);
 </string>
           </argument>
         </arguments>
