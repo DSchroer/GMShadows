@@ -28,7 +28,8 @@ uniform vec4 colorIn;
 
 void main()
 {
-    vec4 colvec = vec4(0,0,0,1.0 - (v_vColour * texture2D( gm_BaseTexture, v_vTexcoord )).r);
-    gl_FragColor = colvec;
+    vec4 col = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord );
+    vec4 colvec = vec4(col.r,0,0,col.a);
+    gl_FragColor = col;
 }
 

@@ -37,10 +37,10 @@ void main()
 vec4 HorizontalReductionPS(vec2 TexCoord)
 {
     float sizec = 1.0 / linearBaseSize.x;
-    //if(TexCoord.x > sizec && TexCoord.x < 1.0 - sizec)
-    //{
-      //  return vec4(0,0,1,1);
-    //}
+    if(TexCoord.x > sizec && TexCoord.x < 1.0 - sizec)
+    {
+        return vec4(0,0,1,1);
+    }
     
     vec2 color = vec2(1,1);
     

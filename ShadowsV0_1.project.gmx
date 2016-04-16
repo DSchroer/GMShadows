@@ -22,6 +22,7 @@
         <script>scripts\light_use_gradient.gml</script>
         <script>scripts\light_create.gml</script>
         <script>scripts\light_set_dynamic.gml</script>
+        <script>scripts\light_draw_debug.gml</script>
       </scripts>
       <scripts name="Map">
         <script>scripts\map_create.gml</script>
