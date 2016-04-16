@@ -26,6 +26,7 @@ varying vec4 v_vColour;
 
 uniform sampler2D shadowMapSamplers;
 
+const float mapSize = 512.0;
 vec4 DrawShadowsPS(vec2 TexCoord);
 float GetShadowDistanceH(vec2 TexCoord);
 float GetShadowDistanceV(vec2 TexCoord);
@@ -38,7 +39,7 @@ void main()
 vec4 DrawShadowsPS(vec2 TexCoord)
 {
     float dist = length(TexCoord - vec2(0.5,0.5));
-    dist *= 512.0; 
+    dist *= mapSize; 
 
     float shadowMapDistance;
     float nY = 2.0*( TexCoord.y - 0.5);
@@ -53,7 +54,7 @@ vec4 DrawShadowsPS(vec2 TexCoord)
         shadowMapDistance = GetShadowDistanceV(TexCoord);
     }
      
-    float light = dist < (shadowMapDistance * 255.0) ? 1.0:0.0;
+    float light = dist < (shadowMapDistance * (mapSize / 2.0)) ? 1.0:0.0;
     return vec4(light, light, light, light);
 }
 

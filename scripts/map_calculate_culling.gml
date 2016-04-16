@@ -13,29 +13,47 @@ for(i = 0; i < ds_list_size(l); i++)
     {
         if(self.layer == other.layer)
         {
-            lastCol = self.collision;
+            hl = (self.light_size / 2);
             
-            var xp, yp, sp;
-            xp = self.x + (self.light_size / 2);
-            yp = self.y + (self.light_size / 2);
-            sp = (self.light_size / 2);
-            
-            collision = false;
-            for(j = 0; j < ds_list_size(c); j++)
+            self.in_view = false;
+            if(self.x - hl < view_xview + view_wview && self.x + hl > view_xview)
             {
-                var ob;
-                ob = ds_list_find_value(c, j);
-                
-                if(collision_circle( xp, yp, sp ,ob, true, true))
+                if(self.y - hl < view_yview + view_hview && self.y + hl > view_yview)
                 {
-                    collision = true;
-                    break;
+                    if(!self.in_view)
+                    {
+                        rendered = false;
+                    }
+                    self.in_view = true;
                 }
             }
-
-            if(lastCol && !collision)
+            
+            if(self.in_view)
             {
-                self.rendered = false;
+                lastCol = self.collision;
+                            
+                var xp, yp, sp;
+                xp = self.x + (self.light_size / 2);
+                yp = self.y + (self.light_size / 2);
+                sp = (self.light_size / 2);
+                
+                collision = false;
+                for(j = 0; j < ds_list_size(c); j++)
+                {
+                    var ob;
+                    ob = ds_list_find_value(c, j);
+                    
+                    if(collision_circle( xp, yp, sp ,ob, true, true))
+                    {
+                        collision = true;
+                        break;
+                    }
+                }
+    
+                if(lastCol && !collision)
+                {
+                    self.rendered = false;
+                }
             }
         }
     }

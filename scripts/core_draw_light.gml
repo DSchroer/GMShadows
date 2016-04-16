@@ -1,5 +1,5 @@
-#define draw_light_new
-////draw_light_new(light)
+#define core_draw_light
+////draw_light(light)
 surface_set_target(self.back);
 draw_clear_alpha(c_white,0);
 with(obj_shadow_caster)

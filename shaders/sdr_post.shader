@@ -30,8 +30,9 @@ uniform float mapSize;
 const int quality = 4;
 const float base = 2.0;
 const float top = 15.0;
-const float size = 1024.0;
+const float size = 512.0;
 
+const vec4 col = vec4(1,1,1,1);
 
 void main()
 {
@@ -60,10 +61,8 @@ void main()
     if(gradient > 0.5)
     {
         avg = avg * vec4(1,1,1, 1.0-d);
-    }else
-    {
-    
     }
+    
     gl_FragColor = avg;
 }
 

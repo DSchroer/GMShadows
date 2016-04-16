@@ -15,6 +15,11 @@ for(i = 0; i < ds_list_size(l); i++)
     var obj;
     obj = ds_list_find_value(l, i);
     
+    if(!obj.in_view)
+    {
+        continue;
+    }
+    
     with(obj)
     {
         if(self.layer == other.layer)
@@ -25,17 +30,17 @@ for(i = 0; i < ds_list_size(l); i++)
                 self.rendered = false;
             }
             
-            if(!self.rendered || collision)
+            if(!self.rendered || collision || dynamic)
             {
-                caster();
-                distance();
-                reductions();
-                shadow();
-                postprocess();
+                core_caster();
+                core_distance();
+                core_reductions();
+                core_shadow();
+                core_postprocess();
                 self.rendered = true;
             }
             
-            draw_surface_ext(self.redraw,self.x,self.y,self.scale,self.scale,0,c_white,1.0);
+            draw_surface_ext(self.redraw,self.x-view_xview,self.y-view_yview,self.scale,self.scale,0,c_white,1.0);
         }
     }
 }
@@ -51,5 +56,5 @@ g = color_get_green(color);
 b = color_get_blue(color);
 shader_set_uniform_f(shdCol,r,g,b,alpha);
 
-draw_surface(lightSurface,0,0);
+draw_surface(lightSurface,view_xview,view_yview);
 shader_reset();

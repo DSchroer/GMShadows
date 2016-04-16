@@ -27,9 +27,11 @@ ds_list_add(l, self.id);
 
 sprite_index = noone;
 
-self.collision = false;
+collision = false;
 rendered = false;
+dynamic = false;
 shadow_color = c_red;
+in_view = true;
 
 gradient = 1.0;
 
