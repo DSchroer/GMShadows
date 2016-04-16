@@ -30,7 +30,7 @@ uniform float mapSize;
 const int quality = 4;
 const float base = 2.0;
 const float top = 15.0;
-const float size = 512.0;
+const float size = 1024.0;
 
 const vec4 col = vec4(1,1,1,1);
 
@@ -38,7 +38,6 @@ void main()
 {
     float d = distance(v_vTexcoord, vec2(0.5,0.5)) * 2.0;
     float dist = mapSize * d;
-    
     
     vec4 total = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord);
     for(int i = 1; i < quality + 1; i++)
@@ -64,7 +63,13 @@ void main()
     {
         avg = avg * vec4(1.0,1.0,1.0, 1.0 - d);
     }
-    avg = vec4(orig.rgb, avg.a * (1.0 - (d * d)));
+   
+    avg = vec4(orig.rgb, avg.a * (2.0 - (d * d)));
+    
+    if(orig.a == 0.0)
+    {
+        avg.a = 0.0;
+    }
     
     gl_FragColor = avg;
 }

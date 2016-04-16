@@ -30,8 +30,10 @@ sprite_index = noone;
 collision = false;
 rendered = false;
 dynamic = false;
-shadow_color = c_red;
 in_view = true;
+
+shadow_color = c_white;
+intensity = 1.0;
 
 gradient = 1.0;
 

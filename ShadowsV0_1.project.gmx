@@ -23,6 +23,10 @@
         <script>scripts\light_create.gml</script>
         <script>scripts\light_set_dynamic.gml</script>
         <script>scripts\light_draw_debug.gml</script>
+        <script>scripts\light_set_color.gml</script>
+        <script>scripts\light_set_intensity.gml</script>
+        <script>scripts\light_get_color.gml</script>
+        <script>scripts\light_get_intensity.gml</script>
       </scripts>
       <scripts name="Map">
         <script>scripts\map_create.gml</script>

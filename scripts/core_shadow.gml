@@ -15,10 +15,10 @@ intensity = shader_get_uniform(sdr_shadow, "lightIntensity");
 surface_set_target(self.posts);
 shader_set(sdr_shadow);
 
-shader_set_uniform_f(red,1.0);
-shader_set_uniform_f(green,1.0);
-shader_set_uniform_f(blue,1.0);
-shader_set_uniform_f(intensity,0.9);
+shader_set_uniform_f(red,color_get_red(self.shadow_color)/255);
+shader_set_uniform_f(green,color_get_green(self.shadow_color)/255);
+shader_set_uniform_f(blue,color_get_blue(self.shadow_color)/255);
+shader_set_uniform_f(intensity,self.intensity/2);
 
 draw_clear_alpha(c_white,0);
 
