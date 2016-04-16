@@ -73,6 +73,7 @@
     </objects>
     <object>objects\obj_fps</object>
     <object>objects\obj_ds</object>
+    <object>objects\empty</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\test</room>

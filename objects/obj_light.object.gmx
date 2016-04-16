@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>light_create(1000,512,0);
-light_set_color(c_green);
 </string>
           </argument>
         </arguments>

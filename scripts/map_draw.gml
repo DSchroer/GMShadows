@@ -40,21 +40,14 @@ for(i = 0; i < ds_list_size(l); i++)
                 self.rendered = true;
             }
             
+            draw_set_blend_mode( bm_add );
             draw_surface_ext(self.redraw,self.x-view_xview,self.y-view_yview,self.scale,self.scale,0,c_white,1.0);
         }
     }
 }
 surface_reset_target();
 
-
+draw_clear_alpha(c_black,1.0);
 shader_set(sdr_blend_shadow);
-
-shdCol = shader_get_uniform(sdr_blend_shadow, "colorIn");
-
-r = color_get_red(color);
-g = color_get_green(color);
-b = color_get_blue(color);
-shader_set_uniform_f(shdCol,r,g,b,alpha);
-
 draw_surface(lightSurface,view_xview,view_yview);
 shader_reset();
