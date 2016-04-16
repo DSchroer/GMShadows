@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,56 @@
           <argument>
             <kind>1</kind>
             <string>light_create(512,512,0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_color(c_white)
+
+var s;
+s = map_size / 4;
+var alpha;
+alpha = 0.5;
+
+draw_set_alpha(alpha);
+draw_rectangle(x,y,x + s, y + s,false);
+draw_surface_ext(back,x,y,0.25,0.25,0,c_white,alpha);
+
+draw_surface_ext(sur,x + s,y,0.25,0.25,0,c_white,alpha);
+
+draw_surface_ext(reduction,x + (s * 2),y,0.25,0.25,0,c_white,alpha);
+
+draw_set_color(c_black)
+draw_set_alpha(alpha);
+draw_rectangle(x + (s * 3),y,x + (s * 4), y + s,false);
+draw_set_color(c_white)
+draw_surface_ext(posts,x + (s * 3),y,0.25,0.25,0,c_white,alpha);
+
+draw_set_color(c_black)
+draw_set_alpha(alpha);
+draw_rectangle(x + (s * 0),y + s,x + (s * 1), y + (s * 2),false);
+draw_set_color(c_white)
+draw_surface_ext(redraw,x + (s * 0),y + s,0.25,0.25,0,c_white,alpha);
+
+draw_set_alpha(1.0);
 </string>
           </argument>
         </arguments>

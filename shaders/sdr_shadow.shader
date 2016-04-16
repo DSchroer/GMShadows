@@ -24,8 +24,6 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform sampler2D shadowMapSamplers;
-
 const float mapSize = 512.0;
 vec4 DrawShadowsPS(vec2 TexCoord);
 float GetShadowDistanceH(vec2 TexCoord);
@@ -55,7 +53,7 @@ vec4 DrawShadowsPS(vec2 TexCoord)
     }
      
     float light = dist < (shadowMapDistance * (mapSize / 2.0)) ? 1.0:0.0;
-    return vec4(light, light, light, light);
+    return vec4(1, 1, 1, light);
 }
 
 float GetShadowDistanceH(vec2 TexCoord)
@@ -77,7 +75,7 @@ float GetShadowDistanceH(vec2 TexCoord)
         newCoords = vec2(0.0 ,newCoords.y);
     }
 
-    return texture2D(shadowMapSamplers, newCoords).r;
+    return texture2D(gm_BaseTexture, newCoords).r;
 }
 
 float GetShadowDistanceV(vec2 TexCoord)
@@ -99,6 +97,6 @@ float GetShadowDistanceV(vec2 TexCoord)
         newCoords = vec2(0.0 ,newCoords.y);
     }
     
-    return texture2D(shadowMapSamplers, newCoords).g;
+    return texture2D(gm_BaseTexture, newCoords).g;
 }
 

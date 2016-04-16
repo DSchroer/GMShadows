@@ -24,7 +24,7 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform float baseSize;
+uniform vec2 linearBaseSize;
 const int loopSize = 512;
 
 vec4 HorizontalReductionPS(vec2 TexCoord);
@@ -36,11 +36,11 @@ void main()
 
 vec4 HorizontalReductionPS(vec2 TexCoord)
 {
-    float sizec = 1.0 / baseSize;
-    if(TexCoord.x > sizec && TexCoord.x < 1.0 - sizec)
-    {
-        return vec4(1,1,1,1);
-    }
+    float sizec = 1.0 / linearBaseSize.x;
+    //if(TexCoord.x > sizec && TexCoord.x < 1.0 - sizec)
+    //{
+      //  return vec4(0,0,1,1);
+    //}
     
     vec2 color = vec2(1,1);
     

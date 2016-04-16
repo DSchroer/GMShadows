@@ -51,6 +51,7 @@
       <shader type="GLSLES">shaders\sdr_post.shader</shader>
       <shader type="GLSLES">shaders\sdr_caster_outline.shader</shader>
     </shaders>
+    <shader type="GLSLES">shaders\shader6.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_default</font>

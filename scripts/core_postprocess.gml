@@ -5,9 +5,11 @@ self.redraw = surface_create(l_width, l_height);
 
 shader_set(sdr_post);
 
+var msize;
 msize = shader_get_uniform(sdr_post,"mapSize");
 shader_set_uniform_f(msize,(1.0 / self.map_size));
 
+var grad;
 grad = shader_get_uniform(sdr_post,"gradient");
 shader_set_uniform_f(grad,self.gradient);
 
