@@ -5,7 +5,7 @@ if(!surface_exists(lightSurface))
 }
 
 surface_set_target(lightSurface);
-draw_clear_alpha(c_black,1.0);
+draw_clear_alpha(c_black,0.0);
 
 var l;
 l = ds_map_find_value(instance_find(obj_light_var,0).map_layer,string(layer));
@@ -39,7 +39,7 @@ for(i = 0; i < ds_list_size(l); i++)
                 core_postprocess();
                 self.rendered = true;
             }
-            
+             
             draw_set_blend_mode( bm_add );
             draw_surface_ext(self.redraw,self.x-view_xview,self.y-view_yview,self.scale,self.scale,0,c_white,1.0);
         }
@@ -47,7 +47,10 @@ for(i = 0; i < ds_list_size(l); i++)
 }
 surface_reset_target();
 
-draw_clear_alpha(c_black,1.0);
+draw_set_blend_mode( bm_normal );
+
 shader_set(sdr_blend_shadow);
 draw_surface(lightSurface,view_xview,view_yview);
 shader_reset();
+
+
