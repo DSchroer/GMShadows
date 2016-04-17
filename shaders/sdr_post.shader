@@ -59,17 +59,7 @@ void main()
     vec4 avg = (total) / (8.0 * float(quality));
     vec4 orig = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord);
     
-    if(gradient > 0.5)
-    {
-        avg = avg * vec4(1.0,1.0,1.0, 1.0 - d);
-    }
-   
-    avg = vec4(orig.rgb, avg.a * (2.0 - (d * d)));
-    
-    if(orig.a == 0.0)
-    {
-        avg.a = 0.0;
-    }
+    avg = vec4(orig.rgb, avg.a * (1.0 - (d * d)));
     
     gl_FragColor = avg;
 }
