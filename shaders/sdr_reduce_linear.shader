@@ -18,16 +18,15 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
 
-//######################_==_YOYO_SHADER_MARKER_==_######################@~//
-// Simple passthrough fragment shader
-//
-varying vec2 v_vTexcoord;
+//######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
 uniform vec2 linearBaseSize;
-const int loopSize = 512;
 
 vec4 HorizontalReductionPS(vec2 TexCoord);
+
+//!IMPORTANT set this to the largest light map size that you will use!
+const int big_ass_const = 256;
 
 void main()
 {
@@ -51,8 +50,14 @@ vec4 HorizontalReductionPS(vec2 TexCoord)
     }
     float f = ac;
     
-    for (int i = 0; i < loopSize; i ++)
+    int val = int(linearBaseSize.y);
+    for (int i = 0; i < big_ass_const; i++)
     {
+        if(i >= val)
+        {
+            break;
+        }
+        
         if(abs(f) >= 0.5)
         {
             break;

@@ -25,13 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_create(1000,512,0);
+            <string>light_create(512,512,0);
+light_set_dynamic(true);
+light_set_intensity(1);
+light_set_cast_shadows(true);
+light_set_color(c_white);
+light_set_intensity_power(2.0);
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="5" enumb="109">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -48,13 +51,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_set_intensity(light_get_intensity() - 0.01);
+            <string>debug_view = false;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="5" enumb="107">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -71,7 +74,51 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_set_intensity(light_get_intensity() + 0.01);
+            <string>
+if keyboard_check_pressed(vk_numpad0)
+{
+light_set_intensity(0.0);
+}
+if keyboard_check_pressed(vk_numpad1)
+{
+light_set_intensity(0.1);
+}
+if keyboard_check_pressed(vk_numpad2)
+{
+light_set_intensity(0.2);
+}
+if keyboard_check_pressed(vk_numpad3)
+{
+light_set_intensity(0.3);
+}
+if keyboard_check_pressed(vk_numpad4)
+{
+light_set_intensity(0.4);
+}
+if keyboard_check_pressed(vk_numpad5)
+{
+light_set_intensity(0.5);
+}
+if keyboard_check_pressed(vk_numpad6)
+{
+light_set_intensity(0.6);
+}
+if keyboard_check_pressed(vk_numpad7)
+{
+light_set_intensity(0.7);
+}
+if keyboard_check_pressed(vk_numpad8)
+{
+light_set_intensity(0.8);
+}
+if keyboard_check_pressed(vk_numpad9)
+{
+light_set_intensity(0.9);
+}
+if keyboard_check_pressed(vk_space)
+{
+light_set_intensity(1.0);
+}
 </string>
           </argument>
         </arguments>
@@ -94,7 +141,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_draw_debug()
+            <string>if(debug_view)
+{
+    light_draw_debug()
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="113">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>debug_view = !debug_view
 </string>
           </argument>
         </arguments>
@@ -118,6 +192,29 @@
           <argument>
             <kind>1</kind>
             <string>light_set_color(make_color_rgb(random(255), random(255), random(255)));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="106">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>self.rendered = false;
 </string>
           </argument>
         </arguments>

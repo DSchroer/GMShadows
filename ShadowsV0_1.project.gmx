@@ -10,16 +10,16 @@
   <sprites name="sprites">
     <sprite>sprites\spr_box</sprite>
     <sprite>sprites\spr_cube</sprite>
-    <sprites name="ShadowsV0">
-      <sprite>sprites\spr_light</sprite>
-    </sprites>
+    <sprite>sprites\Focus</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="ShadowsV0">
       <scripts name="Light">
-        <script>scripts\light_use_gradient.gml</script>
+        <script>scripts\light_set_intensity_power.gml</script>
         <script>scripts\light_create.gml</script>
         <script>scripts\light_set_dynamic.gml</script>
         <script>scripts\light_draw_debug.gml</script>
@@ -27,10 +27,14 @@
         <script>scripts\light_set_intensity.gml</script>
         <script>scripts\light_get_color.gml</script>
         <script>scripts\light_get_intensity.gml</script>
+        <script>scripts\light_set_cast_shadows.gml</script>
+        <script>scripts\light_get_cast_shadows.gml</script>
+        <script>scripts\light_set_size.gml</script>
+        <script>scripts\light_get_size.gml</script>
       </scripts>
       <scripts name="Map">
         <script>scripts\map_create.gml</script>
-        <script>scripts\map_set_color_alpha.gml</script>
+        <script>scripts\map_set_color.gml</script>
         <script>scripts\map_draw.gml</script>
         <script>scripts\map_calculate_culling.gml</script>
       </scripts>
@@ -52,11 +56,12 @@
       <shader type="GLSLES">shaders\sdr_dist.shader</shader>
       <shader type="GLSLES">shaders\sdr_blend_shadow.shader</shader>
       <shader type="GLSLES">shaders\sdr_shadow.shader</shader>
-      <shader type="GLSLES">shaders\sdr_reduce_linear.shader</shader>
       <shader type="GLSLES">shaders\sdr_post.shader</shader>
+      <shader type="GLSLES">shaders\sdr_reduce_linear.shader</shader>
       <shader type="GLSLES">shaders\sdr_caster_outline.shader</shader>
+      <shader type="GLSLES">shaders\sdr_post2.shader</shader>
     </shaders>
-    <shader type="GLSLES">shaders\shader6.shader</shader>
+    <shader type="GLSLES">shaders\sdr_blur.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_default</font>
@@ -74,9 +79,11 @@
     <object>objects\obj_fps</object>
     <object>objects\obj_ds</object>
     <object>objects\empty</object>
+    <object>objects\obj_blur</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\test</room>
+    <room>rooms\blur</room>
     <room>rooms\room1</room>
   </rooms>
   <help>

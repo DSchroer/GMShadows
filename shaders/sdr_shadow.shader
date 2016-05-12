@@ -24,10 +24,12 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+uniform float lightIntensity;
 uniform float lightRed;
 uniform float lightGreen;
+
+uniform vec3 f_color;
 uniform float lightBlue;
-uniform float lightIntensity;
 
 const float mapSize = 512.0;
 vec4 DrawShadowsPS(vec2 TexCoord);
@@ -58,7 +60,7 @@ vec4 DrawShadowsPS(vec2 TexCoord)
     }
      
     float light = dist < (shadowMapDistance * (mapSize / 2.0)) ? lightIntensity:0.0;
-    return vec4(lightRed, lightGreen, lightBlue, light);
+    return vec4(f_color, light);
 }
 
 float GetShadowDistanceH(vec2 TexCoord)

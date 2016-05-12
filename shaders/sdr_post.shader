@@ -32,13 +32,29 @@ const float base = 2.0;
 const float top = 15.0;
 const float size = 1024.0;
 
-const vec4 col = vec4(1,1,1,1);
+vec4 blur(float dist);
 
 void main()
 {
     float d = distance(v_vTexcoord, vec2(0.5,0.5)) * 2.0;
     float dist = mapSize * d;
     
+    vec4 avg = blur(dist);
+    
+    avg = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord);
+    
+    if(gradient == 0.0)
+    {
+        avg = vec4(avg.rgb, avg.a);
+    }else{
+        avg = vec4(avg.rgb, avg.a * (1.0 - pow(d,gradient)));
+    }
+    
+    gl_FragColor = avg;
+}
+
+vec4 blur(float dist)
+{
     vec4 total = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord);
     for(int i = 1; i < quality + 1; i++)
     {
@@ -56,11 +72,7 @@ void main()
         total +=  v_vColour * texture2D( gm_BaseTexture, v_vTexcoord + vec2(pos,-pos) );
     }
     
-    vec4 avg = (total) / (8.0 * float(quality));
-    vec4 orig = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord);
-    
-    avg = vec4(orig.rgb, avg.a * (1.0 - (d * d)));
-    
-    gl_FragColor = avg;
+    return (total) / (8.0 * float(quality));
 }
+
 

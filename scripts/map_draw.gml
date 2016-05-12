@@ -5,7 +5,7 @@ if(!surface_exists(lightSurface))
 }
 
 surface_set_target(lightSurface);
-draw_clear_alpha(c_black,0.0);
+draw_clear(self.color);
 
 var l;
 l = ds_map_find_value(instance_find(obj_light_var,0).map_layer,string(layer));
@@ -30,7 +30,7 @@ for(i = 0; i < ds_list_size(l); i++)
                 self.rendered = false;
             }
             
-            if(!self.rendered || collision || dynamic)
+            if(!self.rendered || self.collision || self.dynamic)
             {
                 core_caster();
                 core_distance();
@@ -45,12 +45,13 @@ for(i = 0; i < ds_list_size(l); i++)
         }
     }
 }
+
 surface_reset_target();
 
-draw_set_blend_mode( bm_normal );
-
 shader_set(sdr_blend_shadow);
+draw_set_blend_mode_ext( bm_dest_color, bm_src_color );
 draw_surface(lightSurface,view_xview,view_yview);
+draw_set_blend_mode( bm_normal );
 shader_reset();
 
 

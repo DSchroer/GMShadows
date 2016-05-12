@@ -26,4 +26,3 @@ if(!ds_map_exists(obj_light_var.cast_layer,string(layer)))
 
 lightSurface = surface_create(window_get_width(), window_get_height());
 color = c_black;
-alpha = 1.0;

@@ -32,6 +32,8 @@ rendered = false;
 dynamic = false;
 in_view = true;
 
+castsShadows = true;
+
 shadow_color = c_white;
 intensity = 1.0;
 

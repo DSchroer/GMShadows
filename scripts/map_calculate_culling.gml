@@ -11,33 +11,45 @@ for(i = 0; i < ds_list_size(l); i++)
     
     with(obj)
     {
+        var xp, yp, sp;
+        xp = self.x + (self.light_size / 2);
+        yp = self.y + (self.light_size / 2);
+        sp = (self.light_size / 2);
+    
         if(self.layer == other.layer)
         {
-            hl = (self.light_size / 2);
+            var viewx, viewy, viewh, vieww;
+            if(view_enabled)
+            {
+                viewx = view_xview;
+                viewy = view_yview;
+                viewh = view_hview;
+                vieww = view_wview;
+            }else{
+                viewx = 0;
+                viewy = 0;
+                viewh = window_get_height();
+                vieww = window_get_width();
+            }
             
             self.in_view = false;
-            if(self.x - hl < view_xview + view_wview && self.x + hl > view_xview)
+            if(xp - sp < viewx + vieww && xp + sp > viewx)
             {
-                if(self.y - hl < view_yview + view_hview && self.y + hl > view_yview)
+                if(yp - sp < viewy + viewh && yp + sp > viewy)
                 {
-                    if(!self.in_view)
-                    {
-                        rendered = false;
-                    }
                     self.in_view = true;
                 }
             }
             
-            if(self.in_view)
+            self.lastCol = self.collision;
+            if(!self.castsShadows)
             {
-                lastCol = self.collision;
-                            
-                var xp, yp, sp;
-                xp = self.x + (self.light_size / 2);
-                yp = self.y + (self.light_size / 2);
-                sp = (self.light_size / 2);
-                
-                collision = false;
+               // self.collision = false;
+            }
+            
+            if(self.in_view && self.castsShadows)
+            {    
+                self.collision = false;
                 for(j = 0; j < ds_list_size(c); j++)
                 {
                     var ob;
@@ -49,8 +61,8 @@ for(i = 0; i < ds_list_size(l); i++)
                         break;
                     }
                 }
-    
-                if(lastCol && !collision)
+                
+                if(lastCol && !self.collision)
                 {
                     self.rendered = false;
                 }
