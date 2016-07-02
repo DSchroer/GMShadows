@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>light_create(1024,512,0);
+            <string>light_create(1024,1024,0);
 light_set_dynamic(true);
 light_set_intensity(0.9);
 light_set_cast_shadows(true);
@@ -76,6 +76,9 @@ light_set_color(make_color_rgb(random(255), random(255), random(255)));
           <argument>
             <kind>1</kind>
             <string>
+x = mouse_x - 512;
+y = mouse_y - 512;
+
 if keyboard_check_pressed(vk_numpad0)
 {
 light_set_intensity(0.0);

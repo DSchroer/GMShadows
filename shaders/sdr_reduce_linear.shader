@@ -26,7 +26,7 @@ uniform vec2 linearBaseSize;
 vec4 HorizontalReductionPS(vec2 TexCoord);
 
 //!IMPORTANT set this to the largest light map size that you will use!
-const int big_ass_const = 256;
+const int big_ass_const = 512;
 
 void main()
 {

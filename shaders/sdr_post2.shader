@@ -18,14 +18,11 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
 
-//######################_==_YOYO_SHADER_MARKER_==_######################@~//
-// Simple passthrough fragment shader
-//
-varying vec2 v_vTexcoord;
+//######################_==_YOYO_SHADER_MARKER_==_######################@~varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform float gradient;
-uniform float mapSize;
+const float gradient = 1.0;
+const float mapSize = 1.0/ 512.0;
 
 const float size = 1024.0;
 
@@ -55,7 +52,6 @@ const float top = 5.0;
 const float quality = 1.0;
 
 vec2 coord(float x, float y);
-int index(int x, int y);
 vec4 gchunck(float x, float y,float sc, float[25] gau, float quality);
 
 vec4 blur(float dist)
@@ -101,6 +97,7 @@ vec4 blur(float dist)
         d = 0.0;
     }
     
+    
     for(float i = -2.0; i < 3.0; i+=(1.0/quality))
     {
         for(float j = -2.0; j < 3.0; j+=(1.0/quality))
@@ -114,16 +111,11 @@ vec4 blur(float dist)
 
 vec4 gchunck(float x, float y, float sc, float[25] gau, float quality)
 {
-    return v_vColour * texture2D( gm_BaseTexture, coord(float(x) * sc, float(y) * sc) ) * (gau[index(int(x),int(y))] / (quality * quality));
+    return v_vColour * texture2D( gm_BaseTexture, coord(float(x) * sc, float(y) * sc) ) * (gau[((2 + int(x)) * 5) + (2 + int(y))] / (quality * quality));
 }
 
 vec2 coord(float x, float y)
 {
     return v_vTexcoord + vec2((1.0/512.0) * x, (1.0/512.0) * y);
-}
-
-int index(int x, int y)
-{
-    return ((2 + x) * 5) + (2 + y);
 }
 

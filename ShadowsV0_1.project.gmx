@@ -11,13 +11,15 @@
     <sprite>sprites\spr_box</sprite>
     <sprite>sprites\spr_cube</sprite>
     <sprite>sprites\Focus</sprite>
+    <sprite>sprites\spr_animation</sprite>
+    <sprite>sprites\spr_light</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="ShadowsV0">
+    <scripts name="Shadows">
       <scripts name="Light">
         <script>scripts\light_set_intensity_power.gml</script>
         <script>scripts\light_create.gml</script>
@@ -31,6 +33,7 @@
         <script>scripts\light_get_cast_shadows.gml</script>
         <script>scripts\light_set_size.gml</script>
         <script>scripts\light_get_size.gml</script>
+        <script>scripts\light_destroy.gml</script>
       </scripts>
       <scripts name="Map">
         <script>scripts\map_create.gml</script>
@@ -41,6 +44,8 @@
       <scripts name="Cast">
         <script>scripts\cast_create.gml</script>
         <script>scripts\cast_set_dynamic.gml</script>
+        <script>scripts\cast_set_image.gml</script>
+        <script>scripts\cast_destroy.gml</script>
       </scripts>
       <scripts name="Core">
         <script>scripts\core_shadow.gml</script>
@@ -52,39 +57,38 @@
     </scripts>
   </scripts>
   <shaders name="shaders">
-    <shaders name="ShadowsV0">
+    <shaders name="Shadows">
       <shader type="GLSLES">shaders\sdr_dist.shader</shader>
       <shader type="GLSLES">shaders\sdr_blend_shadow.shader</shader>
       <shader type="GLSLES">shaders\sdr_shadow.shader</shader>
       <shader type="GLSLES">shaders\sdr_post.shader</shader>
       <shader type="GLSLES">shaders\sdr_reduce_linear.shader</shader>
       <shader type="GLSLES">shaders\sdr_caster_outline.shader</shader>
-      <shader type="GLSLES">shaders\sdr_post2.shader</shader>
     </shaders>
-    <shader type="GLSLES">shaders\sdr_blur.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_default</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_light</object>
-    <object>objects\obj_shadow_map</object>
-    <object>objects\obj_shadow_caster</object>
-    <object>objects\obj_dynamic_shadow_caster</object>
-    <object>objects\obj_cube</object>
-    <object>objects\obj_box</object>
-    <objects name="ShadowsV0">
+    <objects name="Shadows">
       <object>objects\obj_light_var</object>
     </objects>
-    <object>objects\obj_fps</object>
-    <object>objects\obj_ds</object>
-    <object>objects\empty</object>
-    <object>objects\obj_blur</object>
+    <objects name="Example">
+      <object>objects\obj_light</object>
+      <object>objects\obj_light_follow</object>
+      <object>objects\obj_shadow_map</object>
+      <object>objects\obj_cube</object>
+      <object>objects\obj_pointer</object>
+      <object>objects\obj_control_tri</object>
+      <object>objects\om_control_follow</object>
+    </objects>
+    <objects name="Debug">
+      <object>objects\obj_fps_display</object>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\test</room>
-    <room>rooms\blur</room>
-    <room>rooms\room1</room>
+    <room>rooms\rm_mov_tri</room>
+    <room>rooms\rm_light_follow</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

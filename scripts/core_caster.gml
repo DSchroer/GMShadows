@@ -21,7 +21,7 @@ for(i = 0; i < ds_list_size(l); i++)
         
         if(other.castsShadows)
         {
-            draw_sprite_ext(sprite,0,xpos,ypos,other.iscale, other.iscale, 0, 0, 1.0);
+            draw_sprite_ext(sprite,animation_index,xpos,ypos,other.iscale, other.iscale, 0, 0, 1.0);
         }
         draw_set_blend_mode(bm_normal);
     }

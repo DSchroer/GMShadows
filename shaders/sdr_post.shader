@@ -24,9 +24,9 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform float gradient;
 uniform float mapSize;
 
+const float gradient = 2.0;
 const int quality = 4;
 const float base = 2.0;
 const float top = 15.0;

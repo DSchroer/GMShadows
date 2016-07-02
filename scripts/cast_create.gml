@@ -23,6 +23,6 @@ l = ds_map_find_value(inst.cast_layer, string(layer));
 ds_list_add(l, self.id);
 
 sprite = sprite_index;
-//sprite_index = noone;
+animation_index = image_index;
 static = true;
 obscured = true;
